@@ -1,0 +1,12 @@
+### Java ignore list
+# Compiled class file
+*.class
+.gradle
+.idea
+build
+out
+.DS_Store
+*.iml
+
+
+
