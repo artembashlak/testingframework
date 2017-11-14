@@ -1,2 +1,10 @@
-# testingframework
-Simple testing framework to test your web application
+Simple testing framework
+
+Tech stack:
+- gradle
+- testng
+- lombok
+- assertj
+- data-supplier
+
+

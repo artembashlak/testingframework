@@ -1,3 +1,6 @@
+plugins {
+    id 'ru.vyarus.quality' version '2.4.0'
+}
 group 'testingframework'
 version '0.0.1'
 
@@ -6,9 +9,40 @@ apply plugin: 'java'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
+ext {
+    testngVersion = '6.12'
+    seleniumVersion = '2.41.0'
+    dataSupplierVersion = '1.3.0'
+    streamexVersion = '0.6.6'
+    lombokVersion = '1.16.18'
+    assertjVersion = '3.8.0'
+    gsonVersion = '2.8.2'
+}
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile("org.testng:testng:${testngVersion}",
+            "org.seleniumhq.selenium:selenium-java:${seleniumVersion}",
+            "io.github.sskorol:test-data-supplier:${dataSupplierVersion}",
+            "one.util:streamex:${streamexVersion}",
+            "org.projectlombok:lombok:${lombokVersion}",
+            "org.assertj:assertj-core:${assertjVersion}",
+            "com.google.code.gson:gson:${gsonVersion}"
+    )
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion '4.3'
+}
+
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+    useTestNG() {
+        listeners << 'io.github.sskorol.core.DataProviderTransformer'
+        listeners << 'com.waverley.listeners.TestListener'
+        suites 'src/test/resources/smoke-suite.xml'
+    }
 }

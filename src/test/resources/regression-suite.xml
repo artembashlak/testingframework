@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression suite">
+    <parameter name="browser" value="chrome"/>
+    <test name="Chrome">
+        <classes>
+            <class name="com.waverley.testcases.AuthTest"/>
+        </classes>
+    </test>
+</suite>
