@@ -1,5 +1,6 @@
 package com.waverley.utils;
 
+import com.waverley.data.DataReader;
 import io.vavr.control.Try;
 import javax.xml.bind.JAXBContext;
 import java.io.File;
@@ -13,10 +14,16 @@ import static javax.xml.bind.JAXBContext.newInstance;
 public class XmlUtils implements DataReader {
 
     @Override
-    public <T> T read(String dataSource, Class<T> entityClass) {
+    public String getDataType() {
+        return "xml";
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T readDataFrom(String dataSource, Class<T> entityClass) {
         return Try.of(() -> newInstance(entityClass))
                 .mapTry(JAXBContext::createUnmarshaller)
                 .mapTry(unmarshaller -> (T) unmarshaller.unmarshal(new File(getSystemResource(dataSource).getPath())))
-                .getOrElseThrow(e -> new IllegalArgumentException("Unable to read " + dataSource, e));
+                .getOrElseThrow(e -> new IllegalArgumentException("Unable to readDataFrom " + dataSource, e));
     }
 }

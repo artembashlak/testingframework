@@ -1,4 +1,4 @@
-package com.waverley.utils;
+package com.waverley.assertions;
 
 import com.waverley.model.User;
 import org.assertj.core.api.AbstractAssert;

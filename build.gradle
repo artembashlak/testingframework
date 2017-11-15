@@ -20,6 +20,9 @@ ext {
     lombokVersion = '1.16.18'
     assertjVersion = '3.8.0'
     gsonVersion = '2.8.2'
+    jexelapiVersion = '2.6.12'
+    commonlang3Version = '3.7'
+    joorVersion = '0.9.6'
 }
 dependencies {
     compile("org.testng:testng:${testngVersion}",
@@ -28,7 +31,10 @@ dependencies {
             "one.util:streamex:${streamexVersion}",
             "org.projectlombok:lombok:${lombokVersion}",
             "org.assertj:assertj-core:${assertjVersion}",
-            "com.google.code.gson:gson:${gsonVersion}"
+            "com.google.code.gson:gson:${gsonVersion}",
+            "net.sourceforge.jexcelapi:jxl:${jexelapiVersion}",
+            "org.apache.commons:commons-lang3:${commonlang3Version}",
+            "org.jooq:joor:${joorVersion}"
     )
 }
 
